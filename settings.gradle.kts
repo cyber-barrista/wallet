@@ -1,3 +1,3 @@
 rootProject.name = "wallet"
-include("db")
-include("rest")
+
+include("rest", "db")
