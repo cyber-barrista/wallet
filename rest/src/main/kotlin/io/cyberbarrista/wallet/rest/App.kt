@@ -8,6 +8,7 @@ import io.cyberbarrista.wallet.rest.Property.DB_FILE
 import io.cyberbarrista.wallet.rest.Property.DB_POOL_SIZE
 import io.cyberbarrista.wallet.rest.feature.DatabaseFeature
 import io.cyberbarrista.wallet.rest.feature.FlywayFeature
+import io.cyberbarrista.wallet.rest.PlayerDto.Currency.USD
 import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.response.respondText
@@ -36,14 +37,14 @@ fun main() {
                 Player.insert {
                     it[id] = 0
                     it[balance] = 1.0
-                    it[currency] = "USD"
+                    it[currency] = USD.name
                 }
             }
         }
 
         routing {
             get("/info") {
-                val inserted = newSuspendedTransaction { Player.selectAll().first() }
+                val inserted = newSuspendedTransaction { Player.selectAll().first().toPlayerDto() }
                 call.respondText("Inserted row: $inserted")
             }
         }

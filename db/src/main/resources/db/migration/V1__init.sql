@@ -6,6 +6,6 @@ CREATE TABLE player (
 
 CREATE TABLE payment_transaction (
     id UUID PRIMARY KEY NOT NULL,
-    player BIGINT NOT NULL REFERENCES player (id),
+    player_id BIGINT NOT NULL REFERENCES player (id),
     status TEXT NOT NULL CHECK ( status IN ( 'SUCCESSFUL', 'FAILED' ) )
 );
