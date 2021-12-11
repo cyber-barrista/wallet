@@ -1,4 +1,4 @@
-package io.cyberbarrista.wallet.rest
+package io.cyberbarrista.wallet.rest.model
 
 import org.jetbrains.exposed.sql.ResultRow
 import java.util.UUID
@@ -8,16 +8,11 @@ import java.util.UUID
 data class PlayerDto(
     val id: Long,
     val balance: Double,
-    val currency: Currency,
-) {
-    enum class Currency {
-        USD,
-        EUR,
-    }
-}
+)
 
 data class PaymentTransactionDto(
     val uuid: UUID,
+    val paymentValue: Double,
     val playerId: Long,
     val status: Status,
 ) {
@@ -30,11 +25,11 @@ data class PaymentTransactionDto(
 fun ResultRow.toPlayerDto() = PlayerDto(
     id = this[Player.id],
     balance = this[Player.balance],
-    currency = enumValueOf(this[Player.currency]),
 )
 
 fun ResultRow.toPaymentTransactionDto() = PaymentTransactionDto(
     uuid = this[PaymentTransaction.id].value,
+    paymentValue = this[PaymentTransaction.paymentValue],
     playerId = this[PaymentTransaction.playerId],
     status = enumValueOf(this[PaymentTransaction.status]),
 )
