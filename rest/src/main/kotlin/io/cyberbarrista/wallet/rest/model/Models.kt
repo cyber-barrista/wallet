@@ -23,7 +23,7 @@ data class PaymentTransactionDto(
 }
 
 fun ResultRow.toPlayerDto() = PlayerDto(
-    id = this[Player.id],
+    id = this[Player.id].value,
     balance = this[Player.balance],
 )
 

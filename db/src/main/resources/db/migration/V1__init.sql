@@ -1,5 +1,5 @@
 CREATE TABLE player (
-    id BIGINT PRIMARY KEY NOT NULL,
+    id IDENTITY PRIMARY KEY NOT NULL,
     balance DOUBLE NOT NULL CHECK ( balance >= 0 )
 );
 

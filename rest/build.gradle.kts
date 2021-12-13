@@ -20,6 +20,8 @@ dependencies {
     implementation("com.zaxxer:HikariCP:5.0.0")
     implementation("org.flywaydb:flyway-core:8.2.1")
 
+//    "implementation"("io.github.microutils:kotlin-logging:1.7.8")
+
     implementation("ch.qos.logback:logback-classic:1.2.7")
 }
 
